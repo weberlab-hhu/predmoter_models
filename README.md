@@ -19,6 +19,7 @@ listed for completeness.
 | BiHybrid_04   | 	ATAC-seq, filtered flagged sequences*                     | use for ATAC-seq prediction  | U-Net + BiLSTM + batch normalization + dropout of 0.3  |
 | BiHybrid_05   | 	ChIP-seq (H3K4me3), filtered flagged sequences*           | /                            | 	U-Net + BiLSTM + batch normalization + dropout of 0.3 |
 | Combined      | 	ATAC-seq, ChIP-seq (H3K4me3), filtered flagged sequences* | use for ChIP-seq prediction  | 	U-Net + BiLSTM + batch normalization + dropout of 0.3 |
+      
 *excluded subsequences of unplaced scaffolds and non-nuclear sequences during training and testing
      
 
