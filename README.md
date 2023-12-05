@@ -51,6 +51,8 @@ Predmoter.py -f <species>.fasta -o <output_directory> -m predict \
 --model <path_to_model>/Combined_predmoter_v0.3.2.ckpt -b <batch_size> \
 -of bigwig --species <species>
 ```
+For more information, please refer to this
+[subsection of the Predmoter documentation](https://github.com/weberlab-hhu/Predmoter#45-inference).
     
 ## 3. F1 statistics <a id="3-f1-statistics"></a>
 ### 3.1 Peak calling parameters <a id="31-peak-calling-parameters"></a>
@@ -85,6 +87,7 @@ peak calling were:
 | *Oryza sativa*         | 120           | 15            | 145                               | 95                                | 580            |
 | *Medicago truncatula*  | 120           | 10            | 215                               | 115                               | 860            |
 | *Spirodela polyrhiza*  | 60            | 15            | 50*                               | 75                                | 200*           |
+     
 *Since the ChIP-seq data for *S. polyrhiza* is single-end, the median insert size is
 unavailable. So diffrent values for ``--min-length`` and ``--lvl2-max-gap`` (four
 times the min-length) were tested. Since ``--lvl2-max-gap`` has to be higher than
@@ -104,6 +107,7 @@ algorithm calling peaks from alignment results. The parameters used were:
 | *Oryza sativa*         | BAMPE    | 374,305,350 | 0.01/0.05                    | yes        | no/yes                      |
 | *Medicago truncatula*  | BAMPE    | 429,433,753 | 0.01/0.05                    | yes        | no/yes                      |
 | *Spirodela polyrhiza*  | BAM*     | 138,570,896 | 0.01/0.05                    | yes        | no/yes                      |
+     
 *the format BAM was chosen for calling single-end ChIP-seq peaks
 
 ### 3.2 F1 results <a id="32-f1-results"></a>
