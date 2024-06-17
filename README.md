@@ -13,34 +13,74 @@ model.
      
 ## Table of contents
 1. [Model information](#1-model-information)
-2. [Predict with Predmoter](#2-predict-with-predmoter)
-3. [Additional information](#3-additional-information)
-4. [References](#references)
-5. [Citation](#citation)
+2. [Model performance](#2-model-performance)
+3. [Predict with Predmoter](#3-predict-with-predmoter)
+4. [Additional information](#4-additional-information)
+5. [References](#references)
+6. [Citation](#citation)
      
 ## 1. Model information <a id="1-model-information"></a>
 A model can only predict the dataset(s) it was trained on. The model architecture is
 listed for completeness.    
 
-| Model name    | Dataset(s)                                                                                                                                             | Recommendation                             | Architecture                                                                                           |
-|:--------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------|:-------------------------------------------------------------------------------------------------------|
-| U-Net         | 	ATAC-seq                                                                                                                                              | /                                          | 	3 convolutional layers + 3 transposed convolutional layers                                            |
-| Hybrid        | 	ATAC-seq                                                                                                                                              | /                                          | 	U-Net + 2 LSTM layers                                                                                 |
-| BiHybrid      | 	ATAC-seq                                                                                                                                              | /                                          | 	U-Net + 2 BiLSTM layers                                                                               |
-| BiHybrid_02   | 	ATAC-seq                                                                                                                                              | /                                          | 	U-Net + 2 BiLSTM layers + 6 batch normalization layers                                                |
-| BiHybrid_03.1 | 	ATAC-seq                                                                                                                                              | /                                          | 	U-Net + 2 BiLSTM layers + 6 batch normalization layers + 1 dropout layer (dropout probability of 0.3) |
-| BiHybrid_03.2 | 	ATAC-seq                                                                                                                                              | /                                          | 	U-Net + 2 BiLSTM layers + 6 batch normalization layers + 1 dropout layer (dropout probability of 0.5) |
-| BiHybrid_04   | 	ATAC-seq, filtered flagged sequences*                                                                                                                 | /                                          | U-Net + 2 BiLSTM layers + 6 batch normalization layers + 1 dropout layer (dropout probability of 0.3)  |
-| BiHybrid_05   | 	ChIP-seq (H3K4me3), filtered flagged sequences*                                                                                                       | /                                          | 	U-Net + 2 BiLSTM layers + 6 batch normalization layers + 1 dropout layer (dropout probability of 0.3) |
-| Combined      | 	ATAC-seq, ChIP-seq (H3K4me3), filtered flagged sequences*                                                                                             | /                                          | 	U-Net + 2 BiLSTM layers + 6 batch normalization layers + 1 dropout layer (dropout probability of 0.3) |
-| Combined_02   | ATAC-seq, ChIP-seq (H3K4me3), filtered flagged sequences*, additional training data                                                                    | use for ATAC- and ChIP-seq data prediction | U-Net + 2 BiLSTM layers + 6 batch normalization layers + 1 dropout layer (dropout probability of 0.3)  |
-| IS_10         | ATAC-seq, ChIP-seq (H3K4me3), filtered flagged sequences*, additional training data; intra-species training and validation split (validation set: 10%) | /                                          | U-Net + 2 BiLSTM layers + 6 batch normalization layers + 1 dropout layer (dropout probability of 0.3)  |
-| IS_20         | ATAC-seq, ChIP-seq (H3K4me3), filtered flagged sequences*, additional training data; intra-species training and validation split (validation set: 20%) | /                                          | U-Net + 2 BiLSTM layers + 6 batch normalization layers + 1 dropout layer (dropout probability of 0.3)  |
+| Model name    | Dataset(s)                                                                                                                                             | Architecture                                                                                          |
+|:--------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------|
+| U-Net         | 	ATAC-seq                                                                                                                                              | 3 convolutional layers + 3 transposed convolutional layers                                            |
+| Hybrid        | 	ATAC-seq                                                                                                                                              | U-Net + 2 LSTM layers                                                                                 |
+| BiHybrid      | 	ATAC-seq                                                                                                                                              | U-Net + 2 BiLSTM layers                                                                               |
+| BiHybrid_02   | 	ATAC-seq                                                                                                                                              | U-Net + 2 BiLSTM layers + 6 batch normalization layers                                                |
+| BiHybrid_03.1 | 	ATAC-seq                                                                                                                                              | U-Net + 2 BiLSTM layers + 6 batch normalization layers + 1 dropout layer (dropout probability of 0.3) |
+| BiHybrid_03.2 | 	ATAC-seq                                                                                                                                              | U-Net + 2 BiLSTM layers + 6 batch normalization layers + 1 dropout layer (dropout probability of 0.5) |
+| BiHybrid_04   | 	ATAC-seq, filtered flagged sequences*                                                                                                                 | U-Net + 2 BiLSTM layers + 6 batch normalization layers + 1 dropout layer (dropout probability of 0.3) |
+| BiHybrid_05   | 	ChIP-seq (H3K4me3), filtered flagged sequences*                                                                                                       | U-Net + 2 BiLSTM layers + 6 batch normalization layers + 1 dropout layer (dropout probability of 0.3) |
+| Combined      | 	ATAC-seq, ChIP-seq (H3K4me3), filtered flagged sequences*                                                                                             | U-Net + 2 BiLSTM layers + 6 batch normalization layers + 1 dropout layer (dropout probability of 0.3) |
+| Combined_02   | ATAC-seq, ChIP-seq (H3K4me3), filtered flagged sequences*, additional training data                                                                    | U-Net + 2 BiLSTM layers + 6 batch normalization layers + 1 dropout layer (dropout probability of 0.3) |
+| IS_10         | ATAC-seq, ChIP-seq (H3K4me3), filtered flagged sequences*, additional training data; intra-species training and validation split (validation set: 10%) | U-Net + 2 BiLSTM layers + 6 batch normalization layers + 1 dropout layer (dropout probability of 0.3) |
+| IS_20         | ATAC-seq, ChIP-seq (H3K4me3), filtered flagged sequences*, additional training data; intra-species training and validation split (validation set: 20%) | U-Net + 2 BiLSTM layers + 6 batch normalization layers + 1 dropout layer (dropout probability of 0.3) |
       
 *excluded subsequences of unplaced scaffolds and non-nuclear sequences during training
 and testing
-     
-## 2. Predict with Predmoter <a id="2-predict-with-predmoter"></a>
+    
+## 2. Model performance <a id="2-model-performance"></a>
+The performance of all models is shown for the two test species *Arabidopsis thaliana*
+and *Oryza sativa*. The figures can also be found in the [paper](#citation) (figure
+5, 6, and 7).
+    
+**Performance of the best models per model setup and test species +/- 3 kbp around
+all TSS:**
+![](images/figure5.jpg)
+(a) The average predicted read coverage for each model and dataset of both strands
+was compared to the average experimental read coverage of both strands via Pearson’s
+correlation. (b) The average experimental read coverage (target/Y) and predicted
+ATAC- and ChIP-seq read coverage in reads per bp are shown for *A.thaliana* and
+*O.sativa*. The predictions of five of the nine best ATAC-seq models and of all
+three best ChIP-seq models are depicted. Flagged sequences were excluded from the
+calculations (see Section 2.1.2 of the [paper](#citation)).
+    
+**Peak F1 statistics and precision-recall curves:**
+![](images/figure6.jpg)
+(a) The F1 of the predicted peaks versus the experimental peaks was calculated per
+model, test species and NGS dataset. (b) The precision-recall curves were calculated
+per test species, model, and dataset. The threshold/cutoff points are marked by
+circles. The exact parameters and cutoffs used are listed in in Section 2.4 of the
+[paper](#citation). Two AUPRC baselines (dashed lines) are depicted. Baseline 2 only
+applied to the Combined_02 model’s predictions, as this model trained on additional
+data (see Section 2.3.1 of the [paper](#citation)). (c) The Combined_02 model’s
+predictions were smoothed utilizing a rolling mean with a given window size (ws). The
+precision-recall curves were calculated per test species, window size, and dataset.
+The threshold/cutoff points are marked by circles. The exact parameters and cutoffs
+used are listed in Section 2.4 of the [paper](#citation). The AUPRC baseline (dashed
+line) is depicted. Flagged sequences were excluded from peak calling and F1,
+precision and recall calculations (see Section 2.1.2 of the [paper](#citation)).
+    
+**Example predictions of Predmoter:**
+![](images/figure7.jpg)
+ Example regions comparing Predmoter’s unsmoothed predictions to experimental
+data (target/Y) for the test species (a, b) *A. thaliana* and (c, d) *O. sativa* in
+5’ to 3’ direction are depicted. The plots (a) and (c) show the ATAC-seq read
+coverage per bp, the plots (b) and (d) show ChIP-seq (H3K4me3) read coverage per bp.
+        
+## 3. Predict with Predmoter <a id="3-predict-with-predmoter"></a>
 Example of how to predict with Predmoter on a fasta file using one of the models above
 (The batch size depends on the capacity of the CPU/GPU. The default batch size is 120.
 If the error ``RuntimeError:CUDA out of memory.`` or other memory errors occur, 
@@ -53,11 +93,10 @@ Predmoter.py -f <species>.fasta -o <output_directory> -m predict \
 For more information, please refer to this
 [subsection of the Predmoter documentation](https://github.com/weberlab-hhu/Predmoter#45-inference).
 
-## 3. Additional information <a id="3-additional-information"></a>
+## 4. Additional information <a id="4-additional-information"></a>
 For additional information about training, validation and test data, species
 selection and exact hyperparameter configuration used, please refer to the
-supplementary material of this
-[preprint](https://doi.org/10.1101/2023.11.03.565452).
+supplementary material of the paper (see [citation](#citation)).
 
 ## References <a id="references"></a>
 Zhang, Y., Liu, T., Meyer, C. A., Eeckhoute, J., Johnson, D. S.,
@@ -66,7 +105,7 @@ Model-Based Analysis of ChIP-Seq (MACS). Genome Biology, 9(9) , 1–9.
 https://doi.org/10.1186/GB-2008-9-9-R137
     
 ## Citation <a id="citation"></a>
-Kindel, F., Triesch, S., Schlüter, U., Randarevitch, L. A., Reichel-Deland, V.,
-Weber, A. P. M., & Denton, A. K. (2023). Predmoter - Cross-species prediction of 
-plant promoter and enhancer regions. BioRxiv, 2023.11.03.565452.
-https://doi.org/10.1101/2023.11.03.565452
+Kindel, F., Triesch, S., Schlüter, U., Randarevitch, L.A., Reichel-Deland, V.,
+Weber, A.P.M., Denton, A.K. (2024) Predmoter—cross-species prediction of plant
+promoter and enhancer regions. Bioinformatics Advances, 4(1), vbae074.
+https://doi.org/10.1093/bioadv/vbae074
