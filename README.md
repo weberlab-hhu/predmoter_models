@@ -19,7 +19,7 @@ model.
 5. [References](#references)
 6. [Citation](#citation)
      
-## 1. Model information <a id="1-model-information"></a>
+## 1. Model information
 A model can only predict the dataset(s) it was trained on. The model architecture is
 listed for completeness.    
 
@@ -41,7 +41,7 @@ listed for completeness.
 *excluded subsequences of unplaced scaffolds and non-nuclear sequences during training
 and testing
     
-## 2. Model performance <a id="2-model-performance"></a>
+## 2. Model performance
 The performance of all models is shown for the two test species *Arabidopsis thaliana*
 and *Oryza sativa*. The figures can also be found in the [paper](#citation) (figure
 5, 6, and 7).
@@ -62,7 +62,7 @@ calculations (see Section 2.1.2 of the [paper](#citation)).
 (a) The F1 of the predicted peaks versus the experimental peaks was calculated per
 model, test species and NGS dataset. (b) The precision-recall curves were calculated
 per test species, model, and dataset. The threshold/cutoff points are marked by
-circles. The exact parameters and cutoffs used are listed in in Section 2.4 of the
+circles. The exact parameters and cutoffs used are listed in Section 2.4 of the
 [paper](#citation). Two AUPRC baselines (dashed lines) are depicted. Baseline 2 only
 applied to the Combined_02 model’s predictions, as this model trained on additional
 data (see Section 2.3.1 of the [paper](#citation)). (c) The Combined_02 model’s
@@ -80,7 +80,7 @@ data (target/Y) for the test species (a, b) *A. thaliana* and (c, d) *O. sativa*
 5’ to 3’ direction are depicted. The plots (a) and (c) show the ATAC-seq read
 coverage per bp, the plots (b) and (d) show ChIP-seq (H3K4me3) read coverage per bp.
         
-## 3. Predict with Predmoter <a id="3-predict-with-predmoter"></a>
+## 3. Predict with Predmoter
 Example of how to predict with Predmoter on a fasta file using one of the models above
 (The batch size depends on the capacity of the CPU/GPU. The default batch size is 120.
 If the error ``RuntimeError:CUDA out of memory.`` or other memory errors occur, 
@@ -93,18 +93,18 @@ Predmoter.py -f <species>.fasta -o <output_directory> -m predict \
 For more information, please refer to this
 [subsection of the Predmoter documentation](https://github.com/weberlab-hhu/Predmoter#45-inference).
 
-## 4. Additional information <a id="4-additional-information"></a>
+## 4. Additional information
 For additional information about training, validation and test data, species
 selection and exact hyperparameter configuration used, please refer to the
 supplementary material of the paper (see [citation](#citation)).
 
-## References <a id="references"></a>
+## References
 Zhang, Y., Liu, T., Meyer, C. A., Eeckhoute, J., Johnson, D. S.,
 Bernstein, B. E., Nussbaum, C., Myers, R. M., Brown, M., Li, W., Shirley, X. S. (2008).
 Model-Based Analysis of ChIP-Seq (MACS). Genome Biology, 9(9) , 1–9.
 https://doi.org/10.1186/GB-2008-9-9-R137
     
-## Citation <a id="citation"></a>
+## Citation
 Kindel, F., Triesch, S., Schlüter, U., Randarevitch, L.A., Reichel-Deland, V.,
 Weber, A.P.M., Denton, A.K. (2024) Predmoter—cross-species prediction of plant
 promoter and enhancer regions. Bioinformatics Advances, 4(1), vbae074.
